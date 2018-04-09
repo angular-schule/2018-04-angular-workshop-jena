@@ -1,9 +1,6 @@
 export class Customer {
-    private id: number;
 
-    constructor(id: number) {
-        this.id = id;
-    }
+    constructor(private id: number) { }
 
     fooBar() {
         const self = this;
