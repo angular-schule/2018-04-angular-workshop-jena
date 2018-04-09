@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Book } from '../../shared/book';
 import { BookHelper } from '../../shared/book-helper';
 
@@ -10,6 +10,7 @@ import { BookHelper } from '../../shared/book-helper';
 export class BookComponent implements OnInit {
 
   @Input() book: Book;
+  @Output() rate = new EventEmitter<Book>();
 
   constructor() { }
 
@@ -18,13 +19,12 @@ export class BookComponent implements OnInit {
 
   rateUp() {
     const ratedBook = BookHelper.rateUp(this.book);
-    console.log(ratedBook);
-    this.book = ratedBook;
+    this.rate.emit(ratedBook);
   }
 
   rateDown() {
     const ratedBook = BookHelper.rateDown(this.book);
-    console.log(ratedBook);
+    this.rate.emit(ratedBook);
   }
 
   getStarsArray() {

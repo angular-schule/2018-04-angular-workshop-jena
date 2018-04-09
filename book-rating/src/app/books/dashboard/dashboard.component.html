@@ -1,7 +1,8 @@
 
 <br-book
   [book]="b"
-  *ngFor="let b of books"></br-book>
+  *ngFor="let b of books"
+  (rate)="updateList($event)"></br-book>
 
 <div *ngIf="books.length === 0">Keine Bücher vorhanden</div>
 
