@@ -1,0 +1,23 @@
+
+<br-book
+  [book]="b"
+  *ngFor="let b of books"></br-book>
+
+<div *ngIf="books.length === 0">Keine Bücher vorhanden</div>
+
+
+<ul>
+  <li *ngFor="let b of books; index as i; trackBy: trackBook">
+    {{ i + 1 }}. {{ b.title }}
+  </li>
+</ul>
+
+
+
+{{ books.length }} Bücher vorhanden
+
+
+
+<hr>
+
+<a [href]="url">Zur Website</a>
