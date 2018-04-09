@@ -1,4 +1,4 @@
-class Customer {
+export class Customer {
     private id: number;
 
     constructor(id: number) {
@@ -6,7 +6,6 @@ class Customer {
     }
 
     fooBar() {
-
         const self = this;
         function callback1() {
             return self.id * 10;
@@ -24,10 +23,16 @@ class Customer {
 das ist Kunde ${this.id}!!`;
 
         console.log(text2);
-
+        debugger;
         console.log(this.id);
     }
-}
 
-const myCustomer = new Customer(3);
-myCustomer.fooBar();
+    myMethod(myArg: string | number | boolean) {
+         
+        if(typeof myArg === 'string') {
+            return parseInt(myArg, 10);
+        }
+
+        return myArg;
+    }
+}
