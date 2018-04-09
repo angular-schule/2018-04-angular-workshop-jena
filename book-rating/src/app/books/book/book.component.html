@@ -8,9 +8,12 @@
         <span class="badge badge-secondary">{{ book.rating }}</span>
       </h2>
 
-      <span *ngFor="let x of getStarsArray()">⭐</span>️
+      <span *ngFor="let x of getStarsArray()">⭐</span>
 
     </div>
     <p>{{ book.description }}</p>
+
+    <button (click)="rateUp()" class="btn btn-secondary" type="button">+1</button>
+    <button (click)="rateDown()" class="btn btn-secondary" type="button">-1</button>
   </div>
 </div>

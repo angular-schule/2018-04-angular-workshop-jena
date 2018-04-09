@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../../shared/book';
+import { BookHelper } from '../../shared/book-helper';
 
 @Component({
   selector: 'br-book',
@@ -13,6 +14,17 @@ export class BookComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  rateUp() {
+    const ratedBook = BookHelper.rateUp(this.book);
+    console.log(ratedBook);
+    this.book = ratedBook;
+  }
+
+  rateDown() {
+    const ratedBook = BookHelper.rateDown(this.book);
+    console.log(ratedBook);
   }
 
   getStarsArray() {
