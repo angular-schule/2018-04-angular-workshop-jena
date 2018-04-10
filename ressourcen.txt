@@ -1,2 +1,3 @@
 https://angular.schule/blog/2018-03-pure-immutable-operations
 https://github.com/mgechev/ngworld
+https://angular.io/guide/testing
