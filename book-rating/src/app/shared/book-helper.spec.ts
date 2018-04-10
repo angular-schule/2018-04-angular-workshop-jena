@@ -1,7 +1,7 @@
 import { BookHelper } from './book-helper';
 import { Book } from './book';
 
-fdescribe('BookHelper', () => {
+describe('BookHelper', () => {
   let book: Book;
 
   beforeEach(() => {
