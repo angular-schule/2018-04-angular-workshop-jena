@@ -3,6 +3,7 @@ import { spy, verify } from 'ts-mockito';
 
 import { BookComponent } from './book.component';
 import { By } from '@angular/platform-browser';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 describe('BookComponent', () => {
   let component: BookComponent;
@@ -11,6 +12,11 @@ describe('BookComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BookComponent ]
+    })
+    .overrideComponent(BookComponent, {
+      set: { // Change Detection manuell auf Default setzen, sonst funktioniert CD nicht
+        changeDetection: ChangeDetectionStrategy.Default
+      }
     })
     .compileComponents();
   }));
@@ -39,12 +45,21 @@ describe('BookComponent', () => {
     expect(ratingWasCalled).toBe(true);
   });
 
-  fit('should call rateUp() when button is clicked with mockito', () => {
+  it('should call rateUp() when button is clicked with mockito', () => {
     const spiedComp = spy(component);
 
     const rateUpBtn = fixture.debugElement.query(By.css('button.testing-rate-up-btn'));
     rateUpBtn.nativeElement.click();
 
     verify(spiedComp.rateUp()).once();
+  });
+
+  it('should display the correct rating', () => {
+    const ratingBox = fixture.debugElement.query(By.css('.testing-rating-box'));
+    expect(ratingBox.nativeElement.textContent).toBe('3');
+
+    component.book = { ...component.book, rating: 5 };
+    fixture.detectChanges();
+    expect(ratingBox.nativeElement.textContent).toBe('5');
   });
 });
