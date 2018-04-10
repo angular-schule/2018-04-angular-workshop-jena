@@ -2,16 +2,30 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DashboardComponent } from './dashboard.component';
 import { BookComponent } from '../book/book.component';
+import { BookStoreService } from '../shared/book-store.service';
+import { mock, when, instance } from 'ts-mockito/lib/ts-mockito';
 
 
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+
+  let bsMock: BookStoreService;
+
+  beforeEach(() => {
+    bsMock = mock(BookStoreService);
+    when(bsMock.getAllStatic()).thenReturn([
+      { isbn: '', title: 'Testbuch', description: '', rating: 2 }
+    ]);
+  });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
-      // schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        { provide: BookStoreService, useFactory: () => instance(bsMock) }
+      ]
     })
     .compileComponents();
   }));
@@ -22,7 +36,7 @@ fdescribe('DashboardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 });
