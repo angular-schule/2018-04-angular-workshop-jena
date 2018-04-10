@@ -1,7 +1,9 @@
 import { AppPage } from './app.po';
+import { browser } from 'protractor';
 
 describe('book-rating App', () => {
   let page: AppPage;
+
 
   beforeEach(() => {
     page = new AppPage();
@@ -11,4 +13,5 @@ describe('book-rating App', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Welcome to br!');
   });
+
 });
