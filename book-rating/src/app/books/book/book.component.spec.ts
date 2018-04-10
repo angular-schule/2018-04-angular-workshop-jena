@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { spy, verify } from 'ts-mockito';
 
 import { BookComponent } from './book.component';
 import { By } from '@angular/platform-browser';
@@ -25,7 +26,7 @@ describe('BookComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should call rateUp() when button is clicked', () => {
+  it('should call rateUp() when button is clicked', () => {
     const rateUpBtn = fixture.debugElement.query(By.css('button.testing-rate-up-btn'));
 
     let ratingWasCalled = false;
@@ -36,5 +37,14 @@ describe('BookComponent', () => {
 
     rateUpBtn.nativeElement.click();
     expect(ratingWasCalled).toBe(true);
+  });
+
+  fit('should call rateUp() when button is clicked with mockito', () => {
+    const spiedComp = spy(component);
+
+    const rateUpBtn = fixture.debugElement.query(By.css('button.testing-rate-up-btn'));
+    rateUpBtn.nativeElement.click();
+
+    verify(spiedComp.rateUp()).once();
   });
 });
