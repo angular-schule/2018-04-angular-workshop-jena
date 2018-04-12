@@ -8,6 +8,7 @@ import { BookComponent } from './book/book.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookStoreService } from './shared/book-store.service';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CreateBookComponent } from './create-book/create-book.component';
   declarations: [
     DashboardComponent,
     BookComponent,
-    CreateBookComponent
+    CreateBookComponent,
+    BookDetailsComponent
   ],
   exports: [
     DashboardComponent

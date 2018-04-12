@@ -14,8 +14,8 @@ import { BooksModule } from './books/books.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BooksModule
+    BooksModule,
+    AppRoutingModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'de' }

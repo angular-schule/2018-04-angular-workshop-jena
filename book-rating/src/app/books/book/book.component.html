@@ -13,6 +13,10 @@
     </div>
     <p>{{ book.description }}</p>
 
+    <p>
+      <a [routerLink]="['/book', book.isbn]">Zur Detailseite</a>
+    </p>
+
     <button (click)="rateUp()" class="btn btn-secondary testing-rate-up-btn" type="button">+1</button>
     <button (click)="rateDown()" class="btn btn-secondary" type="button">-1</button>
   </div>
