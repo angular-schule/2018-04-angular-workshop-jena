@@ -1,3 +1,16 @@
+<button type="button" class="btn btn-secondary" (click)="ngOnDestroy()">
+  ngOnDestroy()
+</button>
+
+<button type="button" class="btn btn-secondary" (click)="addTimer()">
+  Add timer
+</button>
+
+<div *ngFor="let t of timers">
+  {{ interval$ | async }}
+</div>
+
+
 <form [formGroup]="bookForm" (ngSubmit)="submitForm()">
   <div class="form-group">
     <label>ISBN</label>
@@ -15,6 +28,10 @@
     <input formControlName="title" type="text" class="form-control">
   </div>
 
+  <ul>
+    <li *ngFor="let b of results$ | async">{{ b.title }}</li>
+  </ul>
+
   <div class="form-group">
     <label>Beschreibung</label>
     <input formControlName="description" type="text" class="form-control">
@@ -24,6 +41,7 @@
     <button [disabled]="bookForm.invalid" type="submit" class="btn btn-danger">Abschicken</button>
   </div>
 </form>
+
 
 <pre>
 {{ bookForm.value | json }}

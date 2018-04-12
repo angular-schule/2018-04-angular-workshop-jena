@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Book } from '../../shared/book';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class BookStoreService {
@@ -23,7 +25,11 @@ export class BookStoreService {
   }
 
   search(term: string): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.api}/books/search/${term}`);
+    return this.http.get<Book[]>(`${this.api}/books/search/${term}`).pipe(
+      catchError(err => of([ // oder _throw()
+        { isbn: '', title: 'Fehlerbuch!', description: '', rating: 1 }
+      ]))
+    );
   }
 
   getAllStatic(): Book[] {
