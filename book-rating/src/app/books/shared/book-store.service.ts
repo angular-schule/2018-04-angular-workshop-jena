@@ -6,10 +6,20 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class BookStoreService {
 
+  private api = 'http://api.angular.schule';
+
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://api.angular.schule/books');
+    return this.http.get<Book[]>(`${this.api}/books`);
+  }
+
+  getSingle(isbn: string): Observable<Book> {
+    return this.http.get<Book>(`${this.api}/book/${isbn}`);
+  }
+
+  create(book: Book): Observable<any> {
+    return this.http.post(`${this.api}/book`, book, { responseType: 'text' });
   }
 
   getAllStatic(): Book[] {
