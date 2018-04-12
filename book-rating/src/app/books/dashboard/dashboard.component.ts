@@ -27,6 +27,12 @@ export class DashboardComponent implements OnInit {
       .sort((a, b) => b.rating - a.rating);
   }
 
+  createBook(book: Book) {
+    this.bs.create(book).subscribe(() => {
+      this.updateList(book); // TODO: nicht update aufrufen ;-)
+    });
+  }
+
   trackBook(index: number, item: Book) {
     return item.isbn;
   }
